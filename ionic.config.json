@@ -1,5 +1,7 @@
 {
   "name": "indirimx",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
