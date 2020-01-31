@@ -1,29 +1,113 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ürün Detayı
+      <ion-icon (click)="goHome();" name="arrow-round-back" style="margin-right: 15px;font-size: 25px;position: relative;top: 6px;"></ion-icon>
+      <label style="text-align: center;">Ürün Detayı</label>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card class="welcome-card">
-    <img src="{{product.photo}}" alt=""  />
     <ion-card-header>
-      <ion-card-subtitle></ion-card-subtitle>
-      <ion-card-title>{{product.name}}</ion-card-title>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div><img  style="width: 50px;border-radius: 30px;"src="data:image/jpeg;base64,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">           </div>
+          </ion-col>
+          <ion-col style="text-align: right;">
+            <div> <ion-card-subtitle>{{product?.name}}</ion-card-subtitle>
+              <ion-card-title>{{product?.price}} TL</ion-card-title></div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>      
     </ion-card-header>
-    <ion-card-content>
-      <p>{{product.price}} TL</p>
+    <img src="{{product?.image.image}}" alt=""  />  
+    <ion-card-content >
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div> <label style="top: -7px;position: relative;margin-right: 5px;">{{product?.like}}</label><ion-icon name="heart-empty" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon>
+              <label style="top: -7px;position: relative;margin-right: 5px;">5</label><ion-icon name="chatbubbles" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon></div>
+          </ion-col>
+          <ion-col style="text-align: right;">
+            <div><ion-icon name="pin" style="font-size: 25px;margin-right: 12px;text-align: right"></ion-icon> <label style="top: -7px;position: relative;">{{product?.location}}</label>        
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>     
+     
+     
     </ion-card-content>
   </ion-card>
   <ion-card class="welcome-card">
     <ion-card-header>
       <ion-card-subtitle></ion-card-subtitle>
-      <ion-card-title>Yorumlar</ion-card-title>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div>
+              <ion-card-title>Yorumlar</ion-card-title>
+
+            </div>
+          </ion-col>
+          <ion-col style="text-align: right;">
+            <div> 
+              <ion-button size="small" color="secondary" style="position: relative;top: -5px;">Yorum Yap</ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>      
     </ion-card-header>
     <ion-card-content>
-     
+      <ion-list>
+    
+
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="https://cdn1.iconfinder.com/data/icons/avatar-3/512/Manager-512.png" />
+          </ion-avatar>
+          <ion-label>
+            <h2>Misafir</h2>
+            <h3>3 saniye önce</h3>
+            <p>Listen, I've had a pretty messed up day...</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="https://cdn1.iconfinder.com/data/icons/avatar-3/512/Manager-512.png" />
+          </ion-avatar>
+          <ion-label>
+            <h2>Misafir</h2>
+            <h5>3 saniye önce</h5>
+            <p>I've got enough on my plate as it is, and I...</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="https://cdn1.iconfinder.com/data/icons/avatar-3/512/Manager-512.png" />
+          </ion-avatar>
+          <ion-label>
+            <h2>Misafir</h2>
+            <h5>3 saniye önce</h5>
+            <p>You will remove these restraints and leave...</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="https://cdn1.iconfinder.com/data/icons/avatar-3/512/Manager-512.png" />
+          </ion-avatar>
+          <ion-label>
+            <h2>Misafir</h2>
+            <h5>3 saniye önce</h5>
+            <p>I feel the good in you, the conflict...</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
     </ion-card-content>
   </ion-card>
     <!-- <ion-list lines="none">
