@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tabs',
@@ -8,24 +9,62 @@ import { ActionSheetController } from '@ionic/angular';
 })
 export class TabsPage {
 
-  constructor(public actionSheetController: ActionSheetController) {}
-  async presentActionSheet() {
-    const actionSheet = await this.actionSheetController.create({
-      buttons: [{
-        text: 'Galeriden Seç',
-        icon: 'images',
-        handler: () => {
-          console.log('Galeriden Seç clicked');
+  constructor(public actionSheetController: ActionSheetController,private alertController: AlertController) {}
+  async presentAlertPrompt() {
+    const alert = await this.alertController.create({
+      header: 'Ürünü Paylaş',
+      inputs: [
+        {
+          name: 'name',
+          type: 'text',
+          placeholder: 'Ürün Adı'
+        },
+        {
+          name: 'description',        
+          type: 'text',
+          placeholder: 'Açıklama'
+        },
+        {
+          name: 'location',
+          type: 'text',
+          placeholder: 'Lokasyon'
+        },
+        {
+          name: 'store',        
+          type: 'text',
+          placeholder: 'Mağaza'
+        },      
+        {
+          name: 'price',
+          type: 'number',
+          placeholder: 'Fiyat'
+        }     
+      ],
+      buttons: [
+        // {
+        //   text: 'Fotoğraf Seç',
+        //   role: 'photo',
+        //   cssClass: 'alertcss',
+        //   handler: () => {
+        //     console.log('Confirm Cancel');
+        //   }
+        // },
+        {
+          text: 'Kapat',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Paylaş',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
         }
-      },{
-        text: 'Cancel',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      }]
+      ]
     });
-    await actionSheet.present();
+
+    await alert.present();
   }
 }

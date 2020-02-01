@@ -1,11 +1,11 @@
 <ion-app>
-  <ion-header translucent>
+  <ion-header #header>
     <ion-toolbar>
-      <ion-title style="text-align: center;">Anasayfa</ion-title>
+      <ion-title style="text-align: center;font-family: cursive;font-size: 23px;">Trendy</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-content fullscreen>
+  <ion-content fullscreen hide-header>
     <ion-card *ngFor="let product of products[0]" (click)="goToProduct(product);"> 
       <ion-card-header>
         <ion-grid>

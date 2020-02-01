@@ -22,6 +22,7 @@ export class Tab1Page {
     this.products.push(data);
     console.log(this.products)
     })
+    
   }
   
   
