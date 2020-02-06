@@ -36,8 +36,8 @@
     </ion-avatar>
     
     <ion-list>
-      <ion-item>
-        <ion-label style="margin-top: 20px;">Paylaştığım Ürünler</ion-label>
+      <ion-item style="margin-top: 20px;">
+        <ion-label>Paylaştığım Ürünler</ion-label>
         <ion-badge color="danger" slot="end">4</ion-badge>
       </ion-item>
       <ion-item *ngFor="let product of products[0]" (click)="goToProduct(product);">
