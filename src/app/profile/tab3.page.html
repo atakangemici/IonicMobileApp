@@ -1,57 +1,64 @@
 <ion-app>
   <ion-header #header>
     <ion-toolbar>
-      <ion-title style="text-align:center;font-family: cursive;font-size: 23px;">Trendy</ion-title>
+      <ion-title>
+        <ion-grid>
+          <ion-row>
+            <ion-col>          
+            <div style="text-align: left;font-family: cursive;font-size: 23px;">
+              <ion-icon ios="ios-shirt" md="md-shirt" style="font-size: 28px;position: relative;top: 5px;"></ion-icon>
+              Indirimx
+            </div>             
+            </ion-col>
+            <ion-col style="text-align: right;">
+              <div style="position: relative;top: 7px;font-size: 24px;">
+                <ion-icon name="information-circle" (click)="goToTutorail();"></ion-icon>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>       
+      </ion-title>
     </ion-toolbar>
   </ion-header>
 
 <ion-app> 
-  <ion-content fullscreen scroll-y="false">
 
-<div class="cards-container">
-  
-  <div class="card card-one" style="width: 100%;">
-    <header>
-      <div class="avatar">
-        <img src="https://www.pngkey.com/png/detail/47-474070_child-avatar-icon-flat-design-red-yellow-coffee.png" />
-      </div>
-    </header>
+  <ion-header translucent>
+    <ion-toolbar>
+      <ion-title>Avatar</ion-title >
+    </ion-toolbar>
+  </ion-header >
 
-
-    <h3>Misafir</h3>
-
-    <div class="desc">
-      Paylaşımlarınızla modaya renk katıyorsunuz.Bizimle olduğunuz için teşekkür ederiz.
-    </div>
-    <div class="contacts">
-      <a href=""><i class="fa fa-plus"></i></a>
-      <a href=""><i class="fa fa-whatsapp"></i></a>
-      <a href=""><i class="fa fa-envelope"></i></a>
-      <div class="clear"></div>
-    </div>
-
-   
-  </div>
-
-  <div class="clear"></div>
-</div>
-
-</ion-content>
-<ion-footer no-shadow>
-<div style="background-color: #f36767;height: 70px;text-align: center;padding-top: 15px;color: white;">
-  <ion-grid>
-    <ion-row>
-      <ion-col style="border-right: 1px solid;">
-        <div>  Beğenilerim : 5</div>
-      </ion-col>
-      <ion-col>
-        <div>  Yorumlarım : 12</div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>     
+  <ion-content fullscreen>
+    <ion-list-header style=" display:block;text-align: center;padding-top:20px" >Atakan Gemici</ion-list-header>
+    <ion-avatar style="margin:auto;position: relative;top: -5px;left:7px" class="ion-margin-start">
+      <img src="https://www.pngkey.com/png/detail/47-474070_child-avatar-icon-flat-design-red-yellow-coffee.png">
+    </ion-avatar>
     
- 
+    <ion-list>
+      <ion-item>
+        <ion-label style="margin-top: 10px;">Paylaştığım Ürünler</ion-label>
+        <ion-badge color="danger" slot="end">70</ion-badge>
+      </ion-item>
+      <ion-item *ngFor="let product of products[0]" (click)="goToProduct(product);">
+        <ion-avatar slot="start">
+          <ion-img [src]="product.image.image"></ion-img>        
+        </ion-avatar>
+        <ion-label>
+          <h3>{{product.name}}</h3>
+          <p>{{product.price}}</p>
+          <p style="color:#38c5d5">{{product.location}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
 
-</div>
+    
+  </ion-content>
+<ion-footer no-shadow>
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-footer>
 </ion-app> 

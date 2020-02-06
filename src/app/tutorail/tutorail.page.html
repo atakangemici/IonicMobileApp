@@ -1,0 +1,23 @@
+<ion-app> 
+  <ion-content fullscreen padding scroll-y="false">
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide>
+        <!-- <img src="../../assets/dog.png"/> -->
+        <h5 style="color: #fd5644 !important;">İndirimix'e <b>Hoşgeldiniz</b></h5>
+        <label style="color:#69b398;font-size: 14px;"><p>Tarzınızı yakalayacağınız</p> <p>bu uygulama ile</p><p>modaya yön vereceksiniz.</p></label>
+      </ion-slide>
+
+      <ion-slide>
+        <!-- <img src="../../assets/cat.png"/> -->
+        <h5 style="color: #fd5644 !important;">Welcome to the <b>ICA</b></h5>
+        <label style="color:#69b398"><p>The ionic conference app is a practical preview of the ionic framework in action, and a demonstration of proper code use.</p></label>
+      </ion-slide>
+
+      <ion-slide>
+        <!-- <img src="../../assets/cat_dog.png"/> -->
+        <h2>Ready to Play?</h2>
+        <ion-button color="warning" (click)="goHome();" style="width: 250px;">Başla</ion-button>
+      </ion-slide>
+    </ion-slides>
+  </ion-content>
+</ion-app>
