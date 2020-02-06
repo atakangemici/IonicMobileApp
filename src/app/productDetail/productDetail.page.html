@@ -42,7 +42,9 @@
         <ion-grid>
           <ion-row>
             <ion-col>
-              <div> <label style="top: -7px;position: relative;margin-right: 5px;">{{product?.like}}</label><ion-icon name="heart-empty" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon>
+              <div> 
+                <label *ngIf="!productLike" style="top: -7px;position: relative;margin-right: 5px;">{{product?.like}}</label><ion-icon *ngIf="!productLike" name="heart-empty" (click)="likeButton();" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon>
+                <label *ngIf="productLike" style="top: -7px;position: relative;margin-right: 5px;">{{product?.like + 1 }}</label><ion-icon *ngIf="productLike" name="ios-heart" (click)="likeButton();" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon>
                 <label style="top: -7px;position: relative;margin-right: 5px;">12{{product?.comment}}</label><ion-icon name="chatbubbles" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon></div>
             </ion-col>
             <ion-col style="text-align: right;">
