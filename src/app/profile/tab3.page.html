@@ -6,13 +6,13 @@
           <ion-row>
             <ion-col>          
             <div style="text-align: left;font-family: cursive;font-size: 23px;">
-              <ion-icon ios="ios-shirt" md="md-shirt" style="font-size: 28px;position: relative;top: 5px;"></ion-icon>
+              <ion-icon [style.color]="'#47c9d8'" ios="ios-shirt" md="md-shirt" style="font-size: 28px;position: relative;top: 5px;"></ion-icon>
               Indirimx
             </div>             
             </ion-col>
             <ion-col style="text-align: right;">
-              <div style="position: relative;top: 7px;font-size: 24px;">
-                <ion-icon name="information-circle" (click)="goToTutorail();"></ion-icon>
+              <div style="position: relative;top: 7px;font-size: 24px">
+                <ion-icon [style.color]="'#fac949'" name="information-circle" (click)="goToTutorail();"></ion-icon>
               </div>
             </ion-col>
           </ion-row>
@@ -22,7 +22,6 @@
   </ion-header>
 
 <ion-app> 
-
   <ion-header translucent>
     <ion-toolbar>
       <ion-title>Avatar</ion-title >
