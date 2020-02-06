@@ -1,11 +1,26 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      <ion-icon (click)="goHome();" name="arrow-round-back" style="margin-right: 15px;font-size: 25px;position: relative;top: 6px;"></ion-icon>
-      <label style="text-align: center;">Ürün Detayı</label>
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-app>
+  <ion-header #header>
+    <ion-toolbar>
+      <ion-title>
+        <ion-grid>
+          <ion-row>
+            <ion-col>          
+            <div style="text-align: left;font-family: cursive;font-size: 23px;">
+              <ion-icon (click)="goHome();" name="arrow-round-back" style="margin-right: 15px;font-size: 25px;position: relative;top: 5px;"></ion-icon>
+              <label style="text-align: center;font-size: 21px;">Ürün Detayı</label>
+            </div>             
+            </ion-col>
+            <ion-col style="text-align: right;">
+              <div style="position: relative;top: 7px;font-size: 24px;">
+                <ion-icon name="information-circle" (click)="goToTutorail();"></ion-icon>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>  
+        
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
 
 <ion-content>
   <ion-card class="welcome-card">
@@ -27,7 +42,10 @@
       <ion-grid>
         <ion-row>
           <ion-col>
-            <div> <label style="top: -7px;position: relative;margin-right: 5px;">{{product?.like}}</label><ion-icon name="heart-empty" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon>
+            <div> 
+              <label *ngIf="!productLike" style="top: -7px;position: relative;margin-right: 5px;">{{product?.like}}</label><ion-icon *ngIf="!productLike" name="heart-empty" (click)="likeButton();" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon>
+              <label *ngIf="productLike" style="top: -7px;position: relative;margin-right: 5px;">{{product?.like + 1 }}</label><ion-icon *ngIf="productLike" name="ios-heart" (click)="likeButton();" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon>
+              
               <label style="top: -7px;position: relative;margin-right: 5px;">{{commentCount}}</label><ion-icon name="chatbubbles" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon></div>
           </ion-col>
           <ion-col style="text-align: right;">

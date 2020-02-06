@@ -15,6 +15,7 @@ export class productDetail {
   product : object;
   comments : object;
   commentCount : string;
+  productLike : boolean;
 
   constructor(route: ActivatedRoute,private router:Router,public http: HttpClient,private alertController: AlertController) { 
     this.productID = route.snapshot.params['id']; 
@@ -45,6 +46,20 @@ export class productDetail {
   goHome(){
     this.router.navigateByUrl("/tabs/tab1");
   }
+
+  goToTutorail(){
+    this.router.navigateByUrl("/tutorail");
+   } 
+
+   likeButton(){
+     if(this.productLike == true){
+      this.productLike = false;
+     }
+     else{
+      this.productLike = true;
+     }
+   }
+
   async presentAlertPrompt() {
     const alert = await this.alertController.create({
       header: 'Yorumun',

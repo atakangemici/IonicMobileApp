@@ -26,6 +26,14 @@ export class Tab3Page implements OnInit {
     
   }
 
+  goToTutorail(){
+    this.route.navigateByUrl("/tutorail");
+   } 
+
+   goToProduct(product){
+    this.route.navigateByUrl("/productDetail/" + product.id);
+   }  
+
   ngOnInit() {
   }
 
