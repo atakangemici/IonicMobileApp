@@ -12,7 +12,7 @@
             </ion-col>
             <ion-col style="text-align: right;">
               <div style="position: relative;top: 7px;font-size: 24px">
-                <ion-icon [style.color]="'#fac949'" name="information-circle" (click)="goToTutorail();"></ion-icon>
+                <ion-icon name="information-circle-outline" (click)="goToTutorail();"></ion-icon>
               </div>
             </ion-col>
           </ion-row>
@@ -37,7 +37,7 @@
     <ion-list>
       <ion-item style="margin-top: 20px;">
         <ion-label>Paylaştığım Ürünler</ion-label>
-        <ion-badge color="danger" slot="end">4</ion-badge>
+        <ion-badge color="warning" slot="end">4</ion-badge>
       </ion-item>
       <ion-item *ngFor="let product of products[0]" (click)="goToProduct(product);">
         <ion-avatar slot="start">

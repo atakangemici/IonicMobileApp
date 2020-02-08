@@ -82,8 +82,11 @@ export class productDetail {
           text: 'Paylaş',
           handler: data =>{  
             let postParams = {message:data.yorum};   
-            let headers = new HttpHeaders();
-            headers = headers.set('Content-Type', 'application/json');      
+            let headers = new HttpHeaders({
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET,HEAD,PUT,PATCH,POST,DELETE'});
+          
             this.http.post<any>('https://localhost:44353/api/app/add_comments', JSON.stringify(postParams),{headers: headers}).subscribe(data => {
               console.log(data.id)
           })

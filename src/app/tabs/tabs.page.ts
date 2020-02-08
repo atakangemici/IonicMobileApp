@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
-import { ModalPage } from '../modal/modal.page';
 
 @Component({
   selector: 'app-tabs',
