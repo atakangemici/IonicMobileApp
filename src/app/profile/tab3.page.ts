@@ -14,12 +14,11 @@ export class Tab3Page implements OnInit {
   public name: string;
   public sure_name: string;
   public photo: string;
+  public productCount : string;
   products = [];
 
 
   constructor(private route:Router,public http: HttpClient) { 
-
-   
 
     this.http.get ( 'https://localhost:44353/api/app/get_user' )
     .subscribe (data => {  
@@ -31,6 +30,7 @@ export class Tab3Page implements OnInit {
     .subscribe (data => {  
     console.log(data)  
     this.products.push(data);
+    this.productCount = data.length;
     console.log(this.products)
     })
 

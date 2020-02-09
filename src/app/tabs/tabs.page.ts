@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-tabs',
@@ -10,7 +12,7 @@ import { ModalController } from '@ionic/angular';
 })
 export class TabsPage {
 
-  constructor(public actionSheetController: ActionSheetController,private alertController: AlertController,public modalController: ModalController) {}
+  constructor(private route:Router,public actionSheetController: ActionSheetController,private alertController: AlertController,public modalController: ModalController) {}
   async presentAlertPrompt() {
     const alert = await this.alertController.create({
       header: 'Ürünü Paylaş',
@@ -68,5 +70,9 @@ export class TabsPage {
 
     await alert.present();
   }
+
+  goToAddProduct(){
+    this.route.navigateByUrl("/addProduct");
+   } 
   
 }
