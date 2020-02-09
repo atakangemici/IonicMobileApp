@@ -12,16 +12,28 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Tab3Page implements OnInit {
   public name: string;
+  public sure_name: string;
   public photo: string;
   products = [];
 
+
   constructor(private route:Router,public http: HttpClient) { 
 
-    this.http.get ( 'https://localhost:44353/api/app/get_all_products' )
+   
+
+    this.http.get ( 'https://localhost:44353/api/app/get_user' )
+    .subscribe (data => {  
+    this.name = data["name"];
+    this.sure_name = data["sure_name"];
+    this.photo = data["image"];
+
+    this.http.get ( 'https://localhost:44353/api/app/get_user_products/'+ data["id"] )
     .subscribe (data => {  
     console.log(data)  
     this.products.push(data);
     console.log(this.products)
+    })
+
     })
     
   }
