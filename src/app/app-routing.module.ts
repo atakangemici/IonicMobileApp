@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./productDetail/productDetail.module').then(m => m.productDetailModule)
   },
   {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+  },
+  {
     path: 'tutorail',
     loadChildren: () => import('./tutorail/tutorail.module').then(m => m.TutorailPageModule)
   },
