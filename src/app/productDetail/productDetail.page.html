@@ -29,9 +29,9 @@
           <ion-row>
             <ion-col>
               <div> 
-                <label *ngIf="!productLike" style="top: -7px;position: relative;margin-right: 5px;">{{product?.like}}</label><ion-icon *ngIf="!productLike" name="heart-empty" (click)="likeButton();" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon>
-                <label *ngIf="productLike" style="top: -7px;position: relative;margin-right: 5px;">{{product?.like + 1 }}</label><ion-icon [style.color]="'#ed4956'" *ngIf="productLike" name="ios-heart" (click)="likeButton();" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon>
-                <label style="top: -7px;position: relative;margin-right: 5px;">12{{product?.comment}}</label><ion-icon name="chatbubbles" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon></div>
+                <label *ngIf="!productLike" style="top: -7px;position: relative;margin-right: 5px;">{{product?.likes_count}}</label><ion-icon *ngIf="!productLike" name="heart-empty" (click)="likeButton();" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon>
+                <label *ngIf="productLike" style="top: -7px;position: relative;margin-right: 5px;">{{product?.likes_count + 1 }}</label><ion-icon [style.color]="'#ed4956'" *ngIf="productLike" name="ios-heart" (click)="likeButton();" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon>
+                <label style="top: -7px;position: relative;margin-right: 5px;">{{product?.comments_count}}</label><ion-icon name="chatbubbles" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon></div>
             </ion-col>
             <ion-col style="text-align: right;">
               <div><ion-icon name="pin" style="font-size: 25px;margin-right: 12px;text-align: right"></ion-icon> <label style="top: -7px;position: relative;color:#38c5d5">{{product?.location}}</label>
