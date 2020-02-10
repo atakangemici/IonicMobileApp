@@ -23,25 +23,20 @@ export class productDetail {
           this.http.get( 'https://localhost:44353/api/app/get_product/' + parseInt(this.productID) ).toPromise()
             .then(data =>{         
               this.product = data;
-              console.log(this.product)
-           })  
+           })   
+  }
+  
+  ngOnInit() {
+    this.getComment();
+  }
 
-           this.http.get( 'https://localhost:44353/api/app/get_comment/' + parseInt(this.productID) ).toPromise()
-           .then(data =>{           
-             this.comments = data;
-             this.commentCount = "5";
-             console.log(this.comments)
-          })  
-
-         
-
-    // this.products[0].forEach(currentProduct=> {
-    //   if(currentProduct.id  == parseInt(this.productID)){
-    //   this.product = currentProduct;
-    //   }
-    // })
-    // })  
-  }  
+  getComment (){
+    this.http.get( 'https://localhost:44353/api/app/get_comment/' + parseInt(this.productID) ).toPromise()
+    .then(data =>{           
+      this.comments = data;
+      this.commentCount = "5";
+   })  
+   }
 
   goHome(){
     this.router.navigateByUrl("/tabs/tab1");
@@ -86,12 +81,7 @@ export class productDetail {
               productId : this.productID
           }
           this.http.post<any>('https://localhost:44353/api/app/add_comments', obj).subscribe(data => {
-            this.http.get( 'https://localhost:44353/api/app/get_comment/' + parseInt(this.productID) ).toPromise()
-           .then(data =>{           
-             this.comments = data;
-             this.commentCount = "5";
-             console.log(this.comments)
-          })  
+            this.getComment(); 
           })
           }
         }
