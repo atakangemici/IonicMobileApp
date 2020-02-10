@@ -55,6 +55,13 @@ export class productDetail {
      }
    }
 
+   deleteComment(id){
+    this.http.get( 'https://localhost:44353/api/app/delete_comment/' + id ).toPromise()
+    .then(data =>{         
+      this.getComment();
+   })   
+   }
+
   async presentAlertPrompt() {
     const alert = await this.alertController.create({
       header: 'Yorumun',

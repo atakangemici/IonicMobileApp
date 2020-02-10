@@ -1,6 +1,5 @@
 import { Component , OnInit} from '@angular/core';
-import { Router } from '@angular/router';
-import {ActivatedRoute} from '@angular/router';
+import {Router , ActivatedRoute} from '@angular/router';
 import { ActionSheetController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 
@@ -13,10 +12,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Tab1Page {
   products = [];
+  productLike : boolean;
 
-  constructor(private route:Router,public http: HttpClient) { 
-
-
+  constructor(private route:Router,public http: HttpClient) {     
 
     this.http.get ( 'https://localhost:44353/api/app/get_all_products')
     .subscribe (data => {  
@@ -28,6 +26,10 @@ export class Tab1Page {
   }
   
   
+  ngOnit(){
+    console.log('aa');
+  }
+  
   goToProduct(product){
     this.route.navigateByUrl("/productDetail/" + product.id);
    }  
@@ -35,6 +37,16 @@ export class Tab1Page {
    goToTutorail(){
     this.route.navigateByUrl("/tutorail");
    } 
+
+   likeButton(product){
+    if(this.productLike == true){
+     this.productLike = false;
+    }
+    else{
+     this.productLike = true;
+    }
+  }
+  
 
 }
 

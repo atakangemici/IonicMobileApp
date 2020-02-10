@@ -4,35 +4,38 @@
       <ion-buttons slot="start">
         <ion-back-button defaultHref="/"></ion-back-button>
       </ion-buttons>
-      <ion-title style="font-size: 17px;">Yeni Gönderi</ion-title>
+      <ion-title style="font-size: 15px;">Yeni Gönderi</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content fullscreen hide-header>   
+    <form #productForm="ngForm">
+
     <ion-item style="margin-top: 20px;">
       <ion-label position="stacked">Ürün Adı</ion-label>
-      <ion-input></ion-input>
+      <ion-input [ngModel]="name" name="name"></ion-input>
     </ion-item> 
     <ion-item>
       <ion-label position="stacked">Açıklama</ion-label>
-      <ion-input></ion-input>
+      <ion-input [ngModel]="description" name="description"></ion-input>
     </ion-item> 
     <ion-item>
       <ion-label position="stacked">Lokasyon</ion-label>
-      <ion-input></ion-input>
+      <ion-input [ngModel]="location" name="location"></ion-input>
     </ion-item> 
     <ion-item>
       <ion-label position="stacked">Mağaza</ion-label>
-      <ion-input></ion-input>
+      <ion-input [ngModel]="store" name="store"></ion-input>
     </ion-item> 
     <ion-item>
       <ion-label position="stacked">Fiyat</ion-label>
-      <ion-input></ion-input>
+      <ion-input [ngModel]="price" type="number" name="price"></ion-input>
     </ion-item> 
     <div style="height: 200px;background-color:#edeff0;margin-top:5%;padding-top: 40px;text-align: center;"><ion-icon name="camera" style="font-size: 100px;color:darkgray"></ion-icon>
     <p style="font-size: 13px;color:darkgray;position: relative;top: -15px;">Fotoğraf Ekle</p>
     </div>
-    <ion-button expand="full" color="secondary" style="margin-top:5%">Paylaş</ion-button>
+    <ion-button (click)="save(productForm)" expand="full"  color="secondary" style="margin-top:5%">Paylaş</ion-button>
+  </form>
 </ion-content>
 
 </ion-app>

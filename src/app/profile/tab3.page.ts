@@ -30,7 +30,7 @@ export class Tab3Page implements OnInit {
     .subscribe (data => {  
     console.log(data)  
     this.products.push(data);
-    this.productCount = "3";
+    this.productCount = data.length;
     console.log(this.products)
     })
 

@@ -4,7 +4,7 @@
       <ion-buttons slot="start">
         <ion-back-button defaultHref="/"></ion-back-button>
       </ion-buttons>
-      <ion-title>Ürün Detayı</ion-title>
+      <ion-title style="font-size:15px">Gönderi Detayı</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -14,11 +14,13 @@
         <ion-grid>
           <ion-row>
             <ion-col>          
-            <div ><img  style="width: 50px;border-radius: 30px;"src="https://www.pngkey.com/png/detail/47-474070_child-avatar-icon-flat-design-red-yellow-coffee.png"></div>             
-            </ion-col>
+            <div >
+              <label>Atakan Gemici</label>
+              <img  style="width: 50px;border-radius: 30px;"src="https://www.pngkey.com/png/detail/47-474070_child-avatar-icon-flat-design-red-yellow-coffee.png"></div>             
+          </ion-col>
             <ion-col style="text-align: right;">
               <div> <ion-card-subtitle>{{product?.name}}</ion-card-subtitle>
-                <ion-card-title>{{product?.price}} TL</ion-card-title></div>
+                <ion-card-title>{{product?.price}} ₺</ion-card-title></div>
             </ion-col>
           </ion-row>
         </ion-grid>      
@@ -38,8 +40,7 @@
               </div>
             </ion-col>
           </ion-row>
-        </ion-grid>    
-                    
+        </ion-grid>                     
       </ion-card-content>
     </ion-card>
   <ion-card class="welcome-card">
@@ -50,7 +51,6 @@
           <ion-col>
             <div>
               <ion-card-title>Yorumlar</ion-card-title>
-
             </div>
           </ion-col>
           <ion-col style="text-align: right;">
@@ -64,20 +64,31 @@
       </ion-grid>      
     </ion-card-header>
     <ion-card-content>
-      <ion-list *ngFor="let comment of comments">
-  
+      <ion-list *ngFor="let comment of comments"> 
         <ion-item>
           <ion-avatar slot="start">
             <img src="https://cdn1.iconfinder.com/data/icons/avatar-3/512/Manager-512.png" />
           </ion-avatar>
-          <ion-label>
-            <h2>Misafir</h2>
-            <h5 style="font-size: 10px;color: gray;">{{comment.create_date}}</h5>
-            <p style="margin-top: 8px;">{{comment.comment}}</p>
-          </ion-label>
+          <ion-grid>
+            <ion-row>
+              <ion-col>          
+              <div>
+                <ion-label>
+                  <h2>Misafir</h2>
+                  <h5 style="font-size: 10px;color: gray;">{{comment.create_date}}</h5>
+                  <p style="margin-top: 8px;">{{comment.comment}}</p>
+                </ion-label>
+               </div>             
+            </ion-col>
+              <ion-col style="text-align: right;">
+                <div> 
+                  <ion-icon name="trash" (click) = "deleteComment(comment.id);" style="padding-top:18px;color:gray"></ion-icon>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>           
         </ion-item>
       </ion-list>
-
     </ion-card-content>
   </ion-card>
 </ion-content>

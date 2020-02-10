@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { NavController, NavParams } from '@ionic/angular';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +11,13 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  constructor(public http: HttpClient,private route:Router) { }
 
+  save(product){
+    this.http.post<any>('https://localhost:44353/api/app/add_product', product.form.value).subscribe(data => {
+      this.route.navigateByUrl("/tabs/tab1");
+    })
+  }
+
+  
 }

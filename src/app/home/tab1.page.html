@@ -5,7 +5,7 @@
         <ion-grid>
           <ion-row>
             <ion-col>          
-            <div style="text-align: left;font-family: cursive;font-size: 23px;">
+            <div style="text-align: left;font-family: cursive;font-size: 20px;">
               <ion-icon [style.color]="'#47c9d8'" ios="ios-shirt" md="md-shirt" style="font-size: 28px;position: relative;top: 5px;"></ion-icon>
               Indirimx
             </div>             
@@ -20,37 +20,52 @@
       </ion-title>
     </ion-toolbar>
   </ion-header>
-
   <ion-content fullscreen hide-header>
-    <ion-card *ngFor="let product of products[0]" (click)="goToProduct(product);"> 
-      <ion-card-header>
+    <ion-item style="margin-top: 2%;">
+      <ion-label>Hangi ildesin ?</ion-label>
+      <ion-select ok-text="Tamam" cancel-text="Kapat">
+        <ion-select-option value="dos">İstanbul</ion-select-option>
+        <ion-select-option value="lunix">Ankara</ion-select-option>
+        <ion-select-option value="mac7">İzmir</ion-select-option>
+        <ion-select-option value="mac8">Bursa</ion-select-option>
+        <ion-select-option value="win3.1">Antalya</ion-select-option>
+        <ion-select-option value="win95">Gaziantep</ion-select-option>
+        <ion-select-option value="win98">Manisa</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-card *ngFor="let product of products[0]"> 
+      <ion-card-header (click)="goToProduct(product);">
         <ion-grid>
           <ion-row>
             <ion-col>          
-            <div ><img  style="width: 50px;border-radius: 30px;"src="https://www.pngkey.com/png/detail/47-474070_child-avatar-icon-flat-design-red-yellow-coffee.png"></div>             
+            <div>
+              <label>Atakan Gemici</label>
+              <img style="width: 50px;border-radius: 30px;"src="https://www.pngkey.com/png/detail/47-474070_child-avatar-icon-flat-design-red-yellow-coffee.png" ></div>             
             </ion-col>
             <ion-col style="text-align: right;">
               <div> <ion-card-subtitle>{{product.name}}</ion-card-subtitle>
-                <ion-card-title>{{product.price}} TL</ion-card-title></div>
+                <ion-card-title>{{product.price}} ₺</ion-card-title></div>
             </ion-col>
           </ion-row>
         </ion-grid>      
       </ion-card-header>
-      <ion-img [src]="product.image.image"></ion-img>         
+      <ion-img [src]="product.image.image" (click)="goToProduct(product);"></ion-img>         
       <ion-card-content >
         <ion-grid>
           <ion-row>
             <ion-col>
-              <div> <label style="top: -7px;position: relative;margin-right: 5px;">{{product.likes_count}}</label><ion-icon name="heart-empty" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon>
-                <label style="top: -7px;position: relative;margin-right: 5px;">{{product.comments_count}}</label><ion-icon name="chatboxes" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon></div>
+              <div> 
+                <label *ngIf="!productLike" style="top: -7px;position: relative;margin-right: 5px;">{{product?.likes_count}}</label><ion-icon *ngIf="!productLike" name="heart-empty" (click)="likeButton(product);" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon>
+                <label *ngIf="productLike" style="top: -7px;position: relative;margin-right: 5px;">{{product?.likes_count + 1 }}</label><ion-icon [style.color]="'#ed4956'" *ngIf="productLike" name="ios-heart" (click)="likeButton(product);" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon>
+                <label style="top: -7px;position: relative;margin-right: 5px;">{{product.comments_count}}</label><ion-icon name="chatboxes" (click)="goToProduct(product);" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon></div>
             </ion-col>
             <ion-col style="text-align: right;">
-              <div><ion-icon name="pin" style="font-size: 25px;margin-right: 2px;text-align: right"></ion-icon> <label style="top: -7px;position: relative;color:#38c5d5">{{product.location}}</label>
-            
+              <div><ion-icon name="pin" style="font-size: 25px;margin-right: 2px;text-align: right"></ion-icon> <label (click)="goToProduct(product);" style="top: -7px;position: relative;color:#38c5d5">{{product.location}}</label>            
               </div>
             </ion-col>
           </ion-row>
-        </ion-grid>                
+        </ion-grid>  
+         <!-- <b style="padding-left: 10px;margin-bottom: 15px;">Atakan Gemici</b><label> {{product.description}}</label>   -->    
       </ion-card-content>
     </ion-card>
   </ion-content>
