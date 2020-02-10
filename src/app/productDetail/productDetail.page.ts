@@ -80,15 +80,18 @@ export class productDetail {
           }
         }, {
           text: 'Paylaş',
-          handler: data =>{  
-            let postParams = {message:data.yorum};   
-            let headers = new HttpHeaders({
-              'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'GET,HEAD,PUT,PATCH,POST,DELETE'});
-          
-            this.http.post<any>('https://localhost:44353/api/app/add_comments', JSON.stringify(postParams),{headers: headers}).subscribe(data => {
-              console.log(data.id)
+          handler: result =>{  
+          let obj = {
+              name : result.yorum,
+              productId : this.productID
+          }
+          this.http.post<any>('https://localhost:44353/api/app/add_comments', obj).subscribe(data => {
+            this.http.get( 'https://localhost:44353/api/app/get_comment/' + parseInt(this.productID) ).toPromise()
+           .then(data =>{           
+             this.comments = data;
+             this.commentCount = "5";
+             console.log(this.comments)
+          })  
           })
           }
         }
