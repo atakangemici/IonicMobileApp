@@ -4,37 +4,34 @@
       <ion-buttons slot="start">
         <ion-back-button defaultHref="/"></ion-back-button>
       </ion-buttons>
-      <ion-title>Yeni Gönderi</ion-title>
+      <ion-title style="font-size: 17px;">Yeni Gönderi</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content fullscreen hide-header>   
-    <ion-chip class="ion-margin-start">
-      <ion-avatar>
-        <img src="./avatar.svg">
-      </ion-avatar>
-      <ion-label>Ürün Fotoğrafı</ion-label>
-    </ion-chip>
-    <ion-item>
-      <ion-label position="floating">Ürün Adı</ion-label>
+    <ion-item style="margin-top: 20px;">
+      <ion-label position="stacked">Ürün Adı</ion-label>
       <ion-input></ion-input>
     </ion-item> 
     <ion-item>
-      <ion-label position="floating">Açıklama</ion-label>
+      <ion-label position="stacked">Açıklama</ion-label>
       <ion-input></ion-input>
     </ion-item> 
     <ion-item>
-      <ion-label position="floating">Lokasyon</ion-label>
+      <ion-label position="stacked">Lokasyon</ion-label>
       <ion-input></ion-input>
     </ion-item> 
     <ion-item>
-      <ion-label position="floating">Mağaza</ion-label>
+      <ion-label position="stacked">Mağaza</ion-label>
       <ion-input></ion-input>
     </ion-item> 
     <ion-item>
-      <ion-label position="floating">Fiyat</ion-label>
+      <ion-label position="stacked">Fiyat</ion-label>
       <ion-input></ion-input>
     </ion-item> 
+    <div style="height: 200px;background-color:#edeff0;margin-top:5%;padding-top: 40px;text-align: center;"><ion-icon name="camera" style="font-size: 100px;color:darkgray"></ion-icon>
+    <p style="font-size: 13px;color:darkgray;position: relative;top: -15px;">Fotoğraf Ekle</p>
+    </div>
     <ion-button expand="full" color="secondary" style="margin-top:5%">Paylaş</ion-button>
 </ion-content>
 
