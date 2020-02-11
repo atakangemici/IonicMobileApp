@@ -35,13 +35,18 @@
     </ion-item>
     <ion-card *ngFor="let product of products[0]"> 
       <ion-card-header (click)="goToProduct(product);">
+        
         <ion-grid>
           <ion-row>
             <ion-col>          
-            <div>
-              <label>Atakan Gemici</label>
+            <div>        
               <img style="width: 50px;border-radius: 30px;"src="https://www.pngkey.com/png/detail/47-474070_child-avatar-icon-flat-design-red-yellow-coffee.png" ></div>             
             </ion-col>
+            <ion-col>          
+              <div>  
+                atakan gemici      
+              </div>
+            </ion-col>                
             <ion-col style="text-align: right;">
               <div> <ion-card-subtitle>{{product.name}}</ion-card-subtitle>
                 <ion-card-title>{{product.price}} ₺</ion-card-title></div>
@@ -50,8 +55,8 @@
         </ion-grid>      
       </ion-card-header>
       <ion-img [src]="product.image.image" (click)="goToProduct(product);"></ion-img>         
-      <ion-card-content >
-        <ion-grid>
+      <ion-card-content style="border-top: 1px solid lightgray;height: 60px;">
+        <ion-grid style="position: relative;top: -7px;">
           <ion-row>
             <ion-col>
               <div> 
