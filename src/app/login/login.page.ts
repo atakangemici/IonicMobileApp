@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-Login',
@@ -9,9 +10,8 @@ import { Component } from '@angular/core';
 export class Login {
   registerContent : boolean;
 
-  constructor() { 
-    
-  }
+  constructor(public http: HttpClient,private route:Router) { }
+  
 
   registerPage() {
     this.registerContent = true;
@@ -21,6 +21,13 @@ export class Login {
     this.registerContent = false;
   }
   
+  register(user){
+    user.form.value.image = "https://www.pngkey.com/png/detail/47-474070_child-avatar-icon-flat-design-red-yellow-coffee.png";
+    this.http.post<any>('https://localhost:44353/api/app/add_user', user.form.value).subscribe(data => {
+      this.route.navigateByUrl("/tabs/tab1");
+    })
+  }
+
   }
 
 
