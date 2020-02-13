@@ -14,7 +14,7 @@ export class Tab2Page {
   constructor(public http: HttpClient,private route:Router) { }
 
   save(product){
-    this.http.post<any>('https://localhost:44353/api/app/add_product', product.form.value).subscribe(data => {
+    this.http.post<any>('https://indirimxapp.azurewebsites.net/api/app/add_product', product.form.value).subscribe(data => {
       this.route.navigateByUrl("/tabs/tab1");
     })
   }

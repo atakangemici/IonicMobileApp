@@ -20,13 +20,13 @@ export class Tab3Page implements OnInit {
 
   constructor(private route:Router,public http: HttpClient) { 
 
-    this.http.get ( 'https://localhost:44353/api/app/get_user' )
+    this.http.get ( 'https://indirimxapp.azurewebsites.net/api/app/get_user' )
     .subscribe (data => {  
     this.name = data["name"];
     this.sure_name = data["sure_name"];
     this.photo = data["image"];
 
-    this.http.get ( 'https://localhost:44353/api/app/get_user_products/'+ data["id"] )
+    this.http.get ( 'https://indirimxapp.azurewebsites.net/api/app/get_user_products/'+ data["id"] )
     .subscribe (data => {  
     console.log(data)  
     this.products.push(data);
