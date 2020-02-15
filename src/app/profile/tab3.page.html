@@ -34,11 +34,19 @@
       <img src="{{photo}}">
     </ion-avatar>
     
-    <ion-list>
-      <ion-item style="margin-top: 20px;">
+    <ion-segment value="gonderi" style="padding-top:20px">
+      <ion-segment-button value="gonderi" (click)="segmentChange('gonderi');">
         <ion-label>Gönderilerim</ion-label>
-        <ion-badge color="warning" slot="end">{{productCount}}</ion-badge>
-      </ion-item>
+      </ion-segment-button>
+      <ion-segment-button value="favori"  (click)="segmentChange('favori');">
+        <ion-label>Favorilerim</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="bildirim" (click)="segmentChange('bildirim');">
+        <ion-label>Bildirimler</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-list *ngIf = "segmentValue == 'gonderi'"> 
       <ion-item *ngFor="let product of products[0]" (click)="goToProduct(product);">
         <ion-avatar slot="start">
           <ion-img [src]="product.image.image"></ion-img>        

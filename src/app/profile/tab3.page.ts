@@ -15,10 +15,13 @@ export class Tab3Page implements OnInit {
   public sure_name: string;
   public photo: string;
   public productCount : string;
+  public segmentValue : string;
   products = [];
 
 
   constructor(private route:Router,public http: HttpClient) { 
+
+    this.segmentValue = "gonderi";
 
     this.http.get ( 'https://localhost:44353/api/app/get_user' )
     .subscribe (data => {  
@@ -48,6 +51,10 @@ export class Tab3Page implements OnInit {
    }  
 
   ngOnInit() {
+  }
+
+  segmentChange (value){
+  this.segmentValue = value;
   }
 
 }

@@ -48,7 +48,7 @@
           </ion-list>
            
       </ion-card-header>
-      <ion-img [src]="product.image.image" style="height: 250px;"></ion-img>  
+      <ion-img [src]="product.image?.image" style="height: 250px;"></ion-img>  
       <ion-card-header padding style="position: relative;left: 26px;">
         <ion-label>
           <h3>{{product.name}}</h3>
@@ -74,7 +74,7 @@
               <div>
                 <ion-chip outline color="dark" style="position: relative;top: -9px;font-size: 12px;" (click)="goToProduct(product);">
                   <ion-icon name="chatbubbles"></ion-icon>                  
-                  <ion-label>Yorum Yap ({{product.comments_count}})</ion-label>
+                  <ion-label>Yorumlar ({{product.comments_count}})</ion-label>
                 </ion-chip>
               </div>
             </ion-col>

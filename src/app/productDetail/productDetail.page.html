@@ -50,7 +50,7 @@
               <div>
                 <ion-chip outline color="dark" style="position: relative;top: -9px;font-size: 12px;">
                   <ion-icon name="chatbubbles"></ion-icon>                  
-                  <ion-label (click)="presentAlertPrompt();">Yorum Yap ({{product?.comments_count}})</ion-label>
+                  <ion-label (click)="presentAlertPrompt();">Yorum Yap</ion-label>
                 </ion-chip>
               </div>
             </ion-col>
@@ -63,18 +63,14 @@
   <ion-card class="welcome-card">
     <ion-card-header>
       <ion-card-subtitle></ion-card-subtitle>
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <div>
-              <ion-card-title>Yorumlar</ion-card-title>
-            </div>
-          </ion-col>       
-        </ion-row>
-      </ion-grid>      
+      <ion-item >
+        <ion-label>Yorumlar</ion-label>
+        <ion-badge color="light" slot="end">{{product?.comments_count}}</ion-badge>
+      </ion-item>
+        
     </ion-card-header>
     <ion-card-content>
-      <ion-list *ngFor="let comment of comments"> 
+      <ion-list *ngFor="let comment of comments" lines="none"> 
         <ion-item>
           <ion-avatar slot="start">
             <img src="https://cdn1.iconfinder.com/data/icons/avatar-3/512/Manager-512.png" />
