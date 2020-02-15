@@ -20,7 +20,7 @@ export class productDetail {
   constructor(route: ActivatedRoute,private router:Router,public http: HttpClient,private alertController: AlertController) { 
     this.productID = route.snapshot.params['id']; 
   
-          this.http.get( 'https://indirimxapp.azurewebsites.net/api/app/get_product/' + parseInt(this.productID) ).toPromise()
+          this.http.get( 'https://localhost:44353/api/app/get_product/' + parseInt(this.productID) ).toPromise()
             .then(data =>{         
               this.product = data;
            })   
@@ -31,7 +31,7 @@ export class productDetail {
   }
 
   getComment (){
-    this.http.get( 'https://indirimxapp.azurewebsites.net/api/app/get_comment/' + parseInt(this.productID) ).toPromise()
+    this.http.get( 'https://localhost:44353/api/app/get_comment/' + parseInt(this.productID) ).toPromise()
     .then(data =>{           
       this.comments = data;
       this.commentCount = "5";
@@ -56,7 +56,7 @@ export class productDetail {
    }
 
    deleteComment(id){
-    this.http.get( 'https://indirimxapp.azurewebsites.net/api/app/delete_comment/' + id ).toPromise()
+    this.http.get( 'https://localhost:44353/api/app/delete_comment/' + id ).toPromise()
     .then(data =>{         
       this.getComment();
    })   
@@ -87,7 +87,7 @@ export class productDetail {
               name : result.yorum,
               productId : this.productID
           }
-          this.http.post<any>('https://indirimxapp.azurewebsites.net/api/app/add_comments', obj).subscribe(data => {
+          this.http.post<any>('https://localhost:44353/api/app/add_comments', obj).subscribe(data => {
             this.getComment(); 
           })
           }

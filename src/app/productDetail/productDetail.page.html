@@ -11,38 +11,55 @@
   <ion-content fullscreen hide-header>
     <ion-card> 
       <ion-card-header>
-        <ion-grid>
-          <ion-row>
-            <ion-col>          
-            <div >
-              <label>Atakan Gemici</label>
-              <img  style="width: 50px;border-radius: 30px;"src="https://www.pngkey.com/png/detail/47-474070_child-avatar-icon-flat-design-red-yellow-coffee.png"></div>             
-          </ion-col>
-            <ion-col style="text-align: right;">
-              <div> <ion-card-subtitle>{{product?.name}}</ion-card-subtitle>
-                <ion-card-title>{{product?.price}} ₺</ion-card-title></div>
-            </ion-col>
-          </ion-row>
-        </ion-grid>      
+        <ion-list lines="none" style="padding: 0px;">
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="https://www.pngkey.com/png/detail/47-474070_child-avatar-icon-flat-design-red-yellow-coffee.png">
+            </ion-avatar>
+            <ion-label>
+              <h3>Atakan Gemici</h3>
+              <p>1d</p>
+            </ion-label>
+          </ion-item>
+          </ion-list>
+           
       </ion-card-header>
-      <img src="{{product?.image.image}}" alt=""  />  
-      <ion-card-content >
-        <ion-grid>
+      <ion-img [src]="product?.image.image" style="height: 250px;"></ion-img>  
+      <ion-card-header padding style="position: relative;left: 26px;">
+        <ion-label>
+          <h3>{{product?.name}}</h3>
+          <p style="font-size: 16px;font-weight: bold;">{{product?.price}} ₺</p>
+          <p style="color:#38c5d5"><ion-icon name="pin" style="color:lightgray;padding-right: 5px;"></ion-icon>{{product?.location}} / {{product?.store}}</p>
+        </ion-label>
+      </ion-card-header>
+      <ion-card-content padding style="position: relative;left: 26px;">
+        {{product?.description}}
+      </ion-card-content>    
+      <ion-card-content style="border-top: 1px solid lightgray;height: 60px;">
+        <ion-grid style="text-align: center;text-align: center;position: relative;top: -5px;" >
           <ion-row>
             <ion-col>
-              <div> 
-                <label *ngIf="!productLike" style="top: -7px;position: relative;margin-right: 5px;">{{product?.likes_count}}</label><ion-icon *ngIf="!productLike" name="heart-empty" (click)="likeButton();" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon>
-                <label *ngIf="productLike" style="top: -7px;position: relative;margin-right: 5px;">{{product?.likes_count + 1 }}</label><ion-icon [style.color]="'#ed4956'" *ngIf="productLike" name="ios-heart" (click)="likeButton();" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon>
-                <label style="top: -7px;position: relative;margin-right: 5px;">{{product?.comments_count}}</label><ion-icon name="chatbubbles" style="font-size: 25px;margin-right: 12px;text-align: left;"></ion-icon></div>
-            </ion-col>
-            <ion-col style="text-align: right;">
-              <div><ion-icon name="pin" style="font-size: 25px;margin-right: 2px;text-align: right"></ion-icon> <label style="top: -7px;position: relative;color:#38c5d5">{{product?.location}}</label>           
+              <div>
+                <ion-chip outline color="dark" style="position: relative;top: -9px;font-size: 12px;">
+                  <ion-icon name="star-outline"></ion-icon>                  
+                  <ion-label>Favoriye Ekle</ion-label>
+                </ion-chip>
               </div>
             </ion-col>
-          </ion-row>
-        </ion-grid>                     
+            <ion-col>
+              <div>
+                <ion-chip outline color="dark" style="position: relative;top: -9px;font-size: 12px;">
+                  <ion-icon name="chatbubbles"></ion-icon>                  
+                  <ion-label (click)="presentAlertPrompt();">Yorum Yap ({{product?.comments_count}})</ion-label>
+                </ion-chip>
+              </div>
+            </ion-col>
+          </ion-row>     
+          </ion-grid>
+         <!-- <b style="padding-left: 10px;margin-bottom: 15px;">Atakan Gemici</b><label> {{product.description}}</label>   -->    
       </ion-card-content>
     </ion-card>
+    
   <ion-card class="welcome-card">
     <ion-card-header>
       <ion-card-subtitle></ion-card-subtitle>
@@ -52,14 +69,7 @@
             <div>
               <ion-card-title>Yorumlar</ion-card-title>
             </div>
-          </ion-col>
-          <ion-col style="text-align: right;">
-            <div>           
-              <ion-chip outline color="warning" style="position: relative;top: -5px;">
-                <ion-label (click)="presentAlertPrompt();">Yorum Yap</ion-label>
-              </ion-chip>
-            </div>
-          </ion-col>
+          </ion-col>       
         </ion-row>
       </ion-grid>      
     </ion-card-header>

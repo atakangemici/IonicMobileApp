@@ -16,7 +16,7 @@ export class Tab1Page {
 
   constructor(private route:Router,public http: HttpClient) {     
     
-    this.http.get ( 'https://indirimxapp.azurewebsites.net/api/app/get_all_products')
+    this.http.get ( 'https://localhost:44353/api/app/get_all_products')
     .subscribe (data => {  
     console.log(data)  
     this.products.push(data);
