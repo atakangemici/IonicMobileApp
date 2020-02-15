@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import { Router } from '@angular/router';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { AlertController } from '@ionic/angular';
-
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-productDetail',
@@ -17,7 +17,7 @@ export class productDetail {
   commentCount : string;
   productLike : boolean;
 
-  constructor(route: ActivatedRoute,private router:Router,public http: HttpClient,private alertController: AlertController) { 
+  constructor(public toastController: ToastController,route: ActivatedRoute,private router:Router,public http: HttpClient,private alertController: AlertController) { 
     this.productID = route.snapshot.params['id']; 
   
           this.http.get( 'https://localhost:44353/api/app/get_product/' + parseInt(this.productID) ).toPromise()
@@ -26,6 +26,14 @@ export class productDetail {
            })   
   }
   
+  async presentToast(mesaj) {
+    const toast = await this.toastController.create({
+      message: mesaj,
+      duration: 2000
+    });
+    toast.present();
+  }
+
   ngOnInit() {
     this.getComment();
   }
@@ -59,6 +67,7 @@ export class productDetail {
     this.http.get( 'https://localhost:44353/api/app/delete_comment/' + id ).toPromise()
     .then(data =>{         
       this.getComment();
+      this.presentToast('Yorumun silindi.');
    })   
    }
 
@@ -89,6 +98,7 @@ export class productDetail {
           }
           this.http.post<any>('https://localhost:44353/api/app/add_comments', obj).subscribe(data => {
             this.getComment(); 
+            this.presentToast('Yorumun paylaşıldı.');
           })
           }
         }
