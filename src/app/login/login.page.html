@@ -12,7 +12,8 @@
   <ion-content fullscreen hide-header *ngIf='!registerContent' padding>
     
     <h2 style="font-family: cursive;text-align: center;margin-top: 20%;">Indirimx</h2>
-    
+    <form #userForm="ngForm">
+
     <ion-item>
       <ion-label position="stacked">Email</ion-label>
       <ion-input [ngModel]="email" name="email"></ion-input>
@@ -21,7 +22,8 @@
       <ion-label position="stacked">Şifre</ion-label>
       <ion-input [ngModel]="password" type="password" name="password"></ion-input>
     </ion-item> 
-    <ion-button expand="full" color="secondary" style="margin-top:5%">Giriş Yap</ion-button>
+    <ion-button expand="full" color="secondary" (click)="login(userForm)" style="margin-top:5%">Giriş Yap</ion-button>
+    </form>
 </ion-content>
 
 <ion-content fullscreen hide-header *ngIf='registerContent' padding>

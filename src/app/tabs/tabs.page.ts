@@ -13,6 +13,12 @@ import { Router } from '@angular/router';
 export class TabsPage {
 
   constructor(private route:Router,public actionSheetController: ActionSheetController,private alertController: AlertController,public modalController: ModalController) {}
+  user = localStorage.getItem('user')
+
+  goLogin(){
+    this.route.navigateByUrl("/login");
+  }
+
   async presentAlertPrompt() {
     const alert = await this.alertController.create({
       header: 'Ürünü Paylaş',
@@ -72,7 +78,22 @@ export class TabsPage {
   }
 
   goToAddProduct(){
-    this.route.navigateByUrl("/addProduct");
+    var user = JSON.parse(localStorage.getItem('user'));
+    if(user == null){
+      this.route.navigateByUrl("/login");
+    }
+    else{
+      this.route.navigateByUrl("/addProduct");
+    }
    } 
-  
+
+   goToProfile(){
+    var user = JSON.parse(localStorage.getItem('user'));
+    if(user == null){
+      this.route.navigateByUrl("/login");
+    }
+    else{
+      this.route.navigateByUrl("/tabs/tab3");
+    }
+   } 
 }

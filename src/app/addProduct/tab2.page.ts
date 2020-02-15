@@ -14,7 +14,10 @@ export class Tab2Page {
   constructor(public http: HttpClient,private route:Router) { }
 
   save(product){
-    this.http.post<any>('https://localhost:44353/api/app/add_product', product.form.value).subscribe(data => {
+    var token = JSON.parse(localStorage.getItem('token'));
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', 'Bearer '+ token);  
+    this.http.post<any>('https://localhost:44353/api/app/add_product', product.form.value,{headers: headers}).subscribe(data => {
       this.route.navigateByUrl("/tabs/tab1");
     })
   }

@@ -16,6 +16,7 @@ export class productDetail {
   comments : object;
   commentCount : string;
   productLike : boolean;
+  user : object;
 
   constructor(public toastController: ToastController,route: ActivatedRoute,private router:Router,public http: HttpClient,private alertController: AlertController) { 
     this.productID = route.snapshot.params['id']; 
@@ -25,7 +26,7 @@ export class productDetail {
               this.product = data;
            })   
   }
-  
+   
   async presentToast(mesaj) {
     const toast = await this.toastController.create({
       message: mesaj,
@@ -39,7 +40,10 @@ export class productDetail {
   }
 
   getComment (){
-    this.http.get( 'https://localhost:44353/api/app/get_comment/' + parseInt(this.productID) ).toPromise()
+    var token = JSON.parse(localStorage.getItem('token'));
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', 'Bearer '+ token);  
+    this.http.get( 'https://localhost:44353/api/app/get_comment/' + parseInt(this.productID) ,{headers: headers}).toPromise()
     .then(data =>{           
       this.comments = data;
       this.commentCount = "5";
@@ -71,7 +75,16 @@ export class productDetail {
    })   
    }
 
+   
   async presentAlertPrompt() {
+    var user = JSON.parse(localStorage.getItem('user'));
+    var token = JSON.parse(localStorage.getItem('token'));
+
+    if(user == null){
+      this.router.navigateByUrl("/login");
+    }
+    else{
+     
     const alert = await this.alertController.create({
       header: 'Yorumun',
       inputs: [
@@ -96,7 +109,9 @@ export class productDetail {
               name : result.yorum,
               productId : this.productID
           }
-          this.http.post<any>('https://localhost:44353/api/app/add_comments', obj).subscribe(data => {
+          let headers = new HttpHeaders();
+          headers = headers.set('Authorization', 'Bearer '+ token);  
+          this.http.post<any>('https://localhost:44353/api/app/add_comments', obj,{headers: headers}).subscribe(data => {
             this.getComment(); 
             this.presentToast('Yorumun paylaşıldı.');
           })
@@ -107,6 +122,8 @@ export class productDetail {
 
     await alert.present();
   }
+    }
+    
   }
 
 

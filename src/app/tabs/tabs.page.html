@@ -10,9 +10,14 @@
       <ion-label>Ürün Paylaş</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab3">
+    <ion-tab-button tab="tab3" (click)="goToProfile();" *ngIf="user">
       <ion-icon name="person"></ion-icon>     
        <ion-label>Profil</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="goToProfile();" *ngIf="!user" (click)="goLogin();">
+      <ion-icon name="person"></ion-icon>     
+       <ion-label>Giriş Yap</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

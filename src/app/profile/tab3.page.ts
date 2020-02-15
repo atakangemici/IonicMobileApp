@@ -2,7 +2,7 @@ import { Component , OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import {ActivatedRoute} from '@angular/router';
 import { ActionSheetController } from '@ionic/angular';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 
 
 @Component({
@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss'],
 })
-export class Tab3Page implements OnInit {
+export class Tab3Page {
   public name: string;
   public sure_name: string;
   public photo: string;
@@ -23,23 +23,25 @@ export class Tab3Page implements OnInit {
 
     this.segmentValue = "gonderi";
 
-    this.http.get ( 'https://localhost:44353/api/app/get_user' )
-    .subscribe (data => {  
-    this.name = data["name"];
-    this.sure_name = data["sure_name"];
-    this.photo = data["image"];
+    var user = JSON.parse(localStorage.getItem('user'));
+    if(user !=null){
+      this.name = user["name"];
+      this.sure_name = user["sure_name"];
+      this.photo = user["image"];
+      var token = JSON.parse(localStorage.getItem('token'));
 
-    this.http.get ( 'https://localhost:44353/api/app/get_user_products/'+ data["id"] )
-    .subscribe (data => {  
-    console.log(data)  
-    this.products.push(data);
-    let keys = Object.keys(data);
-    this.productCount = "5";
-    console.log(this.products)
-    })
-
-    })
-    
+      let headers = new HttpHeaders();
+      headers = headers.set('Authorization', 'Bearer '+ token);  
+      
+      this.http.get ( 'https://localhost:44353/api/app/get_user_products/'+ user["id"] ,{headers: headers})
+      .subscribe (data => {  
+      console.log(data)  
+      this.products.push(data);
+      let keys = Object.keys(data);
+      this.productCount = "5";
+      console.log(this.products)
+      })  
+    }    
   }
 
   goToTutorail(){
