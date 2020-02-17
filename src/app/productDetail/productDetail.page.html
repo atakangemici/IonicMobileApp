@@ -29,14 +29,14 @@
         <ion-label>
           <h3>{{product?.name}}</h3>
           <p style="font-size: 16px;font-weight: bold;">{{product?.price}} ₺</p>
-          <p style="color:#38c5d5"><ion-icon name="pin" style="color:lightgray;padding-right: 5px;"></ion-icon>{{product?.location}} / {{product?.store}}</p>
+          <p style="color:#3171e0"><ion-icon name="pin" style="color:lightgray;padding-right: 5px;"></ion-icon>{{product?.location}} / {{product?.store}}</p>
         </ion-label>
       </ion-card-header>
       <ion-card-content padding style="position: relative;left: 26px;">
         {{product?.description}}
       </ion-card-content>    
-      <ion-card-content style="border-top: 1px solid lightgray;height: 60px;">
-        <ion-grid style="text-align: center;text-align: center;position: relative;top: -5px;" >
+      <ion-card-content style="height: 60px;">
+        <ion-grid style="text-align: center;text-align: center;" >
           <ion-row>
             <ion-col>
               <div>
@@ -54,22 +54,17 @@
                 </ion-chip>
               </div>
             </ion-col>
-          </ion-row>     
-          </ion-grid>
+          </ion-row>         
+          </ion-grid>          
          <!-- <b style="padding-left: 10px;margin-bottom: 15px;">Atakan Gemici</b><label> {{product.description}}</label>   -->    
       </ion-card-content>
-    </ion-card>
     
-  <ion-card class="welcome-card">
-    <ion-card-header>
-      <ion-card-subtitle></ion-card-subtitle>
-      <ion-item >
-        <ion-label>Yorumlar</ion-label>
-        <ion-badge color="light" slot="end">{{product?.comments_count}}</ion-badge>
-      </ion-item>
-        
-    </ion-card-header>
-    <ion-card-content>
+          <ion-item lines="none" style="border-bottom: 1px solid lightgray;padding-top: 20px;">
+            <ion-label style="color:#cd6684;">Yorumlar</ion-label>
+            <ion-badge color="light" slot="end" line="none" style="margin-right: 10px;">{{product?.comments_count}}</ion-badge>
+          </ion-item>
+  
+    
       <ion-list *ngFor="let comment of comments" lines="none"> 
         <ion-item>
           <ion-avatar slot="start">
@@ -84,7 +79,7 @@
                   <h5 style="font-size: 10px;color: gray;">{{comment.create_date}}</h5>
                   <p style="margin-top: 8px;">{{comment.comment}}</p>
                 </ion-label>
-               </div>             
+               </div>                     
             </ion-col>
               <ion-col style="text-align: right;">
                 <div> 
@@ -94,8 +89,14 @@
             </ion-row>
           </ion-grid>           
         </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+      </ion-list> 
+      <div style="text-align: center;padding-top: 15px;padding-bottom: 20px;">
+        <ion-chip outline color="primary">
+          <ion-label>Daha fazla göster</ion-label>
+        </ion-chip>
+      </div>  
+    </ion-card>
+    
+ 
 </ion-content>
 </ion-app>

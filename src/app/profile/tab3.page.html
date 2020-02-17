@@ -34,16 +34,16 @@
       <img src="{{photo}}">
     </ion-avatar>
     
-    <ion-segment value="gonderi" style="padding-top:20px">
+    <ion-segment value="gonderi" style="padding-top:20px" color="medium">
       <ion-segment-button value="gonderi" (click)="segmentChange('gonderi');">
-        <ion-label>Gönderilerim</ion-label>
+        <ion-label>Gönderilerim (3)</ion-label>
       </ion-segment-button>
       <ion-segment-button value="favori"  (click)="segmentChange('favori');">
-        <ion-label>Favorilerim</ion-label>
+        <ion-label>Favorilerim (0)</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="bildirim" (click)="segmentChange('bildirim');">
+      <!-- <ion-segment-button value="bildirim" (click)="segmentChange('bildirim');">
         <ion-label>Bildirimler</ion-label>
-      </ion-segment-button>
+      </ion-segment-button> -->
     </ion-segment>
 
     <ion-list *ngIf = "segmentValue == 'gonderi'"> 
@@ -54,7 +54,7 @@
         <ion-label>
           <h3>{{product.name}}</h3>
           <p>{{product.price}} ₺</p>
-          <p style="color:#38c5d5">{{product.location}}</p>
+          <p style="color:#3171e0"><ion-icon name="pin" style="color:lightgray;padding-right: 5px;"></ion-icon>{{product?.location}} / {{product?.store}}</p>
         </ion-label>
       </ion-item>
     </ion-list>

@@ -53,13 +53,13 @@
         <ion-label>
           <h3>{{product.name}}</h3>
           <p style="font-size: 16px;font-weight: bold;">{{product.price}} ₺</p>
-          <p style="color:#38c5d5"><ion-icon name="pin" style="color:lightgray;padding-right: 5px;"></ion-icon>{{product.location}} / {{product.store}}</p>
+          <p style="color:#3171e0"><ion-icon name="pin" style="color:lightgray;padding-right: 5px;"></ion-icon>{{product?.location}} / {{product?.store}}</p>
         </ion-label>
       </ion-card-header>
       <ion-card-content padding style="position: relative;left: 26px;">
         {{product.description}}
       </ion-card-content>    
-      <ion-card-content style="border-top: 1px solid lightgray;height: 60px;">
+      <ion-card-content style="height: 60px;">
         <ion-grid style="text-align: center;text-align: center;position: relative;top: -5px;" >
           <ion-row>
             <ion-col>

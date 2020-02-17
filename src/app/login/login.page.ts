@@ -12,6 +12,8 @@ export class Login {
 
   constructor(public http: HttpClient,private route:Router) { }
   
+  public url = "http://172.16.137.17/";
+
 
   registerPage() {
     this.registerContent = true;
@@ -24,7 +26,7 @@ export class Login {
   login(user){
     this.http.post<any>('https://localhost:44353/api/app/token', user.form.value).subscribe(data => {
       localStorage.setItem('user', JSON.stringify(data['user']));
-      JSON.parse(localStorage.getItem('user'));
+      user = JSON.parse(localStorage.getItem('user'));
       localStorage.setItem('token', JSON.stringify(data['token']));
       this.route.navigateByUrl("/tabs/tab1");
     })
