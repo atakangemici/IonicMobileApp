@@ -12,15 +12,15 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 })
 export class Tab1Page {
   products = [];
-  productLike : boolean;
+  productFavorite : boolean;
 
   constructor(private route:Router,public http: HttpClient) {     
     
     this.http.get ( 'https://localhost:44353/api/app/get_all_products')
     .subscribe (data => {  
-    console.log(data)  
+  
     this.products.push(data);
-    console.log(this.products)
+    
     })
     
   }
@@ -38,12 +38,12 @@ export class Tab1Page {
     this.route.navigateByUrl("/tutorail");
    } 
 
-   likeButton(product){
-    if(this.productLike == true){
-     this.productLike = false;
+   favoriteButton(product){
+    if(this.productFavorite == true){
+     this.productFavorite = false;
     }
     else{
-     this.productLike = true;
+     this.productFavorite = true;
     }
   }
   

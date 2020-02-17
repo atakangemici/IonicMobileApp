@@ -64,9 +64,13 @@
           <ion-row>
             <ion-col>
               <div>
-                <ion-chip outline color="dark" style="position: relative;top: -9px;font-size: 12px;">
+                <ion-chip outline color="dark" (click)="favoriteButton();" *ngIf="!productFavorite" style="position: relative;top: -9px;font-size: 12px;">
                   <ion-icon name="star-outline"></ion-icon>                  
                   <ion-label>Favoriye Ekle</ion-label>
+                </ion-chip>
+                <ion-chip outline color="secondary" (click)="favoriteButton();" *ngIf="productFavorite" style="position: relative;top: -9px;font-size: 12px;">
+                  <ion-icon name="star-outline"></ion-icon>                  
+                  <ion-label>Favoriye Eklendi</ion-label>
                 </ion-chip>
               </div>
             </ion-col>
