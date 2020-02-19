@@ -78,13 +78,9 @@ export class TabsPage {
   }
 
   goToAddProduct(){
-    var user = JSON.parse(localStorage.getItem('user'));
-    if(user == null){
-      this.route.navigateByUrl("/login");
-    }
-    else{
+   
       this.route.navigateByUrl("/addProduct");
-    }
+   
    } 
 
    goToProfile(){

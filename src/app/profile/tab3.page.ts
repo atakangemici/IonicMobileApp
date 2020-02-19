@@ -33,7 +33,7 @@ export class Tab3Page {
       let headers = new HttpHeaders();
       headers = headers.set('Authorization', 'Bearer '+ token);  
       
-      this.http.get ( 'https://localhost:44353/api/app/get_user_products/'+ user["id"] ,{headers: headers})
+      this.http.get ( 'http://indirimxmobile.azurewebsites.net/api/app/get_user_products/'+ user["id"] ,{headers: headers})
       .subscribe (data => {  
       console.log(data)  
       this.products.push(data);

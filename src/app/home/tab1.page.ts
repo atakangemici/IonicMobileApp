@@ -15,12 +15,13 @@ export class Tab1Page {
   products = [];
   productFavorite : boolean;
   user : object;
+  iller : object;
 
   constructor(public toastController: ToastController,public alertController: AlertController,private route:Router,public http: HttpClient) {     
 
     this.user = JSON.parse(localStorage.getItem('user'));
    
-    this.http.get ( 'https://localhost:44353/api/app/get_all_products')
+    this.http.get ( 'http://indirimxmobile.azurewebsites.net/api/app/get_all_products')
     .subscribe (data => {  
     this.products.push(data);  
     })    

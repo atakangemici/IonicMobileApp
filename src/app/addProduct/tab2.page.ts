@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from '@ionic/angular';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Camera, CameraOptions } from '@ionic-native/Camera/ngx';
+import { File } from '@ionic-native/file/ngx';
+import { ActionSheetController } from '@ionic/angular';
 
 
 @Component({
@@ -12,31 +14,70 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 })
 export class Tab2Page {
   currentImage: any;
-  constructor(public http: HttpClient,private route:Router,private camera: Camera) {
+  constructor(public actionSheetController: ActionSheetController, private file: File,public http: HttpClient,private route:Router,private camera: Camera) {
 
    }
 
-   takePicture() {
+   takePhoto(sourceType:number) {
     const options: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
+      destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
-    };
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+    this.currentImage = 'data:image/jpeg;base64,' + imageData;
 
+    }, (err) => {
+   
+    });
+  }
+
+  getGalleryImage(sourceType) {
+    const options: CameraOptions = {
+      quality: 100,
+      sourceType: sourceType,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
     this.camera.getPicture(options).then((imageData) => {
       this.currentImage = 'data:image/jpeg;base64,' + imageData;
     }, (err) => {
-      // Handle error
-      console.log("Camera issue:" + err);
+    
     });
+  }
+
+  async selectImage() {
+    const actionSheet = await this.actionSheetController.create({
+      header: "Fotoğraf Yükle",
+      buttons: [{
+        text: 'Galeriden Seç',
+        handler: () => {
+          this.getGalleryImage(this.camera.PictureSourceType.PHOTOLIBRARY);
+        }
+      },
+      {
+        text: 'Kamera Kullan',
+        handler: () => {
+          this.getGalleryImage(this.camera.PictureSourceType.CAMERA);
+        }
+      },
+      {
+        text: 'Vazgeç',
+        role: 'cancel'
+      }
+      ]
+    });
+    await actionSheet.present();
   }
 
   save(product){
     var token = JSON.parse(localStorage.getItem('token'));
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', 'Bearer '+ token);  
-    this.http.post<any>('https://localhost:44353/api/app/add_product', product.form.value,{headers: headers}).subscribe(data => {
+    this.http.post<any>('http://indirimxmobile.azurewebsites.net/api/app/add_product', product.form.value,{headers: headers}).subscribe(data => {
       this.route.navigateByUrl("/tabs/tab1");
     })
   }
