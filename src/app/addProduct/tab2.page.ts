@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from '@ionic/angular';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 
 @Component({
@@ -10,8 +11,26 @@ import { Router } from '@angular/router';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  currentImage: any;
+  constructor(public http: HttpClient,private route:Router,private camera: Camera) {
 
-  constructor(public http: HttpClient,private route:Router) { }
+   }
+
+   takePicture() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    };
+
+    this.camera.getPicture(options).then((imageData) => {
+      this.currentImage = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      // Handle error
+      console.log("Camera issue:" + err);
+    });
+  }
 
   save(product){
     var token = JSON.parse(localStorage.getItem('token'));

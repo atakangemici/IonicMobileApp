@@ -2,7 +2,8 @@ import { Component , OnInit} from '@angular/core';
 import {Router , ActivatedRoute} from '@angular/router';
 import { ActionSheetController } from '@ionic/angular';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-
+import { AlertController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -15,23 +16,48 @@ export class Tab1Page {
   productFavorite : boolean;
   user : object;
 
-  constructor(private route:Router,public http: HttpClient) {     
+  constructor(public toastController: ToastController,public alertController: AlertController,private route:Router,public http: HttpClient) {     
 
     this.user = JSON.parse(localStorage.getItem('user'));
-
-    
+   
     this.http.get ( 'https://localhost:44353/api/app/get_all_products')
     .subscribe (data => {  
-  
-    this.products.push(data);
-    
-    })
-    
+    this.products.push(data);  
+    })    
+  }
+
+  async presentToast(mesaj) {
+    const toast = await this.toastController.create({
+      message: mesaj,
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      message : 'Uygunsuz gönderi mi ?',
+      buttons: [
+        {
+          text: 'Vazgeç',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Şikayet Et',
+          handler: () => {
+            this.presentToast('Şikayetiniz işleme alındı.');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
   
-  
   ngOnit(){
-    console.log('aa');
   }
   
   goToProduct(product){

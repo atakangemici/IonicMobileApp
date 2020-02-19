@@ -10,7 +10,9 @@
 
   <ion-content fullscreen hide-header padding>   
     <form #productForm="ngForm">
-
+      <div (click)="takePicture();" style="height: 200px;background-color:#edeff0;margin-top:5%;padding-top: 40px;text-align: center;"><ion-icon name="camera" style="font-size: 100px;color:darkgray"></ion-icon>
+        <p style="font-size: 13px;color:darkgray;position: relative;top: -15px;">Fotoğraf Ekle</p>
+        </div>
     <ion-item style="margin-top: 20px;">
       <ion-label position="stacked">Ürün Adı</ion-label>
       <ion-input [ngModel]="name" name="name"></ion-input>
@@ -31,9 +33,6 @@
       <ion-label position="stacked">Fiyat</ion-label>
       <ion-input [ngModel]="price" type="number" name="price"></ion-input>
     </ion-item> 
-    <div style="height: 200px;background-color:#edeff0;margin-top:5%;padding-top: 40px;text-align: center;"><ion-icon name="camera" style="font-size: 100px;color:darkgray"></ion-icon>
-    <p style="font-size: 13px;color:darkgray;position: relative;top: -15px;">Fotoğraf Ekle</p>
-    </div>
     <ion-button (click)="save(productForm)" expand="full"  color="secondary" style="margin-top:5%">Paylaş</ion-button>
   </form>
 </ion-content>
