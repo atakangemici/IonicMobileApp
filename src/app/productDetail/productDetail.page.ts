@@ -15,8 +15,9 @@ export class productDetail {
   product : object;
   comments : object;
   commentCount : number;
-  productLike : boolean;
+  productFavorite : boolean;
   user : object;
+  allComments : boolean;
 
   constructor(public toastController: ToastController,route: ActivatedRoute,private router:Router,public http: HttpClient,private alertController: AlertController) { 
     this.productID = route.snapshot.params['id']; 
@@ -40,17 +41,30 @@ export class productDetail {
   }
 
   ngOnInit() {
-    this.getComment();
+    this.getComments();
   }
 
-  getComment (){
+  getComments (){
     var token = JSON.parse(localStorage.getItem('token'));
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', 'Bearer '+ token);  
-    this.http.get( 'https://localhost:44353/api/app/get_comment/' + parseInt(this.productID) ,{headers: headers}).toPromise()
+    this.http.get( 'https://localhost:44353/api/app/get_comments/' + parseInt(this.productID) ,{headers: headers}).toPromise()
     .then(data =>{           
       this.comments = data;
       this.commentCount = Object.keys(data).length;
+      this.allComments = false;
+   })  
+   }
+
+   getAllComments (){
+    var token = JSON.parse(localStorage.getItem('token'));
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', 'Bearer '+ token);  
+    this.http.get( 'https://localhost:44353/api/app/get_all_comments/' + parseInt(this.productID) ,{headers: headers}).toPromise()
+    .then(data =>{           
+      this.comments = data;
+      this.commentCount = Object.keys(data).length;
+      this.allComments = true;
    })  
    }
 
@@ -62,14 +76,14 @@ export class productDetail {
     this.router.navigateByUrl("/tutorail");
    } 
 
-   likeButton(){
-     if(this.productLike == true){
-      this.productLike = false;
-     }
-     else{
-      this.productLike = true;
-     }
-   }
+   favoriteButton(product){
+    if(this.productFavorite == true){
+     this.productFavorite = false;
+    }
+    else{
+     this.productFavorite = true;
+    }
+  }
 
  
 
@@ -98,7 +112,7 @@ export class productDetail {
             headers = headers.set('Authorization', 'Bearer '+ token); 
             this.http.get( 'https://localhost:44353/api/app/delete_comment/' + id ,{headers: headers}).toPromise()
             .then(data =>{         
-              this.getComment();
+              this.getComments();
               this.presentToast('Yorumun silindi.');
            })   
           }
@@ -146,7 +160,7 @@ export class productDetail {
           let headers = new HttpHeaders();
           headers = headers.set('Authorization', 'Bearer '+ token);  
           this.http.post<any>('https://localhost:44353/api/app/add_comments', obj,{headers: headers}).subscribe(data => {
-            this.getComment(); 
+            this.getComments(); 
             this.presentToast('Yorumun paylaşıldı.');
           })
           }

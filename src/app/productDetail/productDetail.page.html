@@ -40,9 +40,13 @@
           <ion-row>
             <ion-col>
               <div>
-                <ion-chip outline color="dark" style="position: relative;top: -9px;font-size: 12px;">
+                <ion-chip outline color="dark" (click)="favoriteButton();" *ngIf="!productFavorite" style="position: relative;top: -9px;font-size: 12px;">
                   <ion-icon name="star-outline"></ion-icon>                  
                   <ion-label>Favoriye Ekle</ion-label>
+                </ion-chip>
+                <ion-chip outline color="secondary" (click)="favoriteButton();" *ngIf="productFavorite" style="position: relative;top: -9px;font-size: 12px;">
+                  <ion-icon name="star-outline"></ion-icon>                  
+                  <ion-label>Favoriye Eklendi</ion-label>
                 </ion-chip>
               </div>
             </ion-col>
@@ -91,8 +95,13 @@
         </ion-item>
       </ion-list> 
       <div style="text-align: center;padding-top: 15px;padding-bottom: 20px;">
-        <ion-chip outline color="primary" *ngIf="commentCount > 0">
-          <ion-label>Daha fazla göster</ion-label>
+        <ion-chip outline color="primary" *ngIf="commentCount > 0 && !allComments">
+          <ion-label (click)="getAllComments();">Daha fazla göster</ion-label>
+        </ion-chip>
+      </div> 
+      <div style="text-align: center;padding-bottom: 20px;">
+        <ion-chip outline color="primary" *ngIf="commentCount > 0 && allComments">
+          <ion-label (click)="getComments();">Daha az göster</ion-label>
         </ion-chip>
       </div>  
     </ion-card>
