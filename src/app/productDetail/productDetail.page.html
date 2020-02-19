@@ -61,7 +61,7 @@
     
           <ion-item lines="none" style="border-bottom: 1px solid lightgray;padding-top: 20px;">
             <ion-label style="color:#cd6684;">Yorumlar</ion-label>
-            <ion-badge color="light" slot="end" line="none" style="margin-right: 10px;">{{product?.comments_count}}</ion-badge>
+            <ion-badge color="light" slot="end" line="none" style="margin-right: 10px;">{{commentCount}}</ion-badge>
           </ion-item>
   
     
@@ -83,7 +83,7 @@
             </ion-col>
               <ion-col style="text-align: right;">
                 <div> 
-                  <ion-icon name="trash" (click) = "deleteComment(comment.id);" style="padding-top:18px;color:gray;font-size: 18px;"></ion-icon>
+                  <ion-icon name="trash" (click) = "presentAlertConfirm(comment.id);" *ngIf="comment.user_id == user.id" style="padding-top:18px;color:gray;font-size: 18px;"></ion-icon>
                 </div>
               </ion-col>
             </ion-row>
@@ -91,7 +91,7 @@
         </ion-item>
       </ion-list> 
       <div style="text-align: center;padding-top: 15px;padding-bottom: 20px;">
-        <ion-chip outline color="primary">
+        <ion-chip outline color="primary" *ngIf="commentCount > 0">
           <ion-label>Daha fazla göster</ion-label>
         </ion-chip>
       </div>  

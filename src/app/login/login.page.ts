@@ -12,8 +12,6 @@ export class Login {
 
   constructor(public http: HttpClient,private route:Router) { }
   
-  public url = "http://172.16.137.17/";
-
 
   registerPage() {
     this.registerContent = true;

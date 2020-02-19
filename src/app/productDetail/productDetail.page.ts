@@ -14,7 +14,7 @@ export class productDetail {
   productID: string;
   product : object;
   comments : object;
-  commentCount : string;
+  commentCount : number;
   productLike : boolean;
   user : object;
 
@@ -25,8 +25,12 @@ export class productDetail {
             .then(data =>{         
               this.product = data;
            })   
+
+           this.user = JSON.parse(localStorage.getItem('user'));
+
   }
    
+
   async presentToast(mesaj) {
     const toast = await this.toastController.create({
       message: mesaj,
@@ -46,7 +50,7 @@ export class productDetail {
     this.http.get( 'https://localhost:44353/api/app/get_comment/' + parseInt(this.productID) ,{headers: headers}).toPromise()
     .then(data =>{           
       this.comments = data;
-      this.commentCount = "5";
+      this.commentCount = Object.keys(data).length;
    })  
    }
 
@@ -67,13 +71,43 @@ export class productDetail {
      }
    }
 
-   deleteComment(id){
-    this.http.get( 'https://localhost:44353/api/app/delete_comment/' + id ).toPromise()
-    .then(data =>{         
-      this.getComment();
-      this.presentToast('Yorumun silindi.');
-   })   
-   }
+ 
+
+   async presentAlertConfirm(id) {
+    var user = JSON.parse(localStorage.getItem('user'));
+    var token = JSON.parse(localStorage.getItem('token'));
+
+    if(user == null){
+      this.router.navigateByUrl("/login");
+    }
+    else{
+    const alert = await this.alertController.create({
+      message: 'Yorumun Silinecek !',
+      buttons: [
+        {
+          text: 'Vazgeç',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Onayla',
+          handler: () => {
+            let headers = new HttpHeaders();
+            headers = headers.set('Authorization', 'Bearer '+ token); 
+            this.http.get( 'https://localhost:44353/api/app/delete_comment/' + id ,{headers: headers}).toPromise()
+            .then(data =>{         
+              this.getComment();
+              this.presentToast('Yorumun silindi.');
+           })   
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+  }
 
    
   async presentAlertPrompt() {

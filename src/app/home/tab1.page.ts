@@ -13,8 +13,12 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 export class Tab1Page {
   products = [];
   productFavorite : boolean;
+  user : object;
 
   constructor(private route:Router,public http: HttpClient) {     
+
+    this.user = JSON.parse(localStorage.getItem('user'));
+
     
     this.http.get ( 'https://localhost:44353/api/app/get_all_products')
     .subscribe (data => {  
