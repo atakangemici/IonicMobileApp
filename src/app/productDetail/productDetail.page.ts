@@ -5,6 +5,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-productDetail',
   templateUrl: 'productDetail.page.html',
@@ -31,6 +32,28 @@ export class productDetail {
 
   }
    
+  async presentAlertComplaint() {
+    const alert = await this.alertController.create({
+      message : 'Uygunsuz gönderi mi ?',
+      buttons: [
+        {
+          text: 'Vazgeç',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Şikayet Et',
+          handler: () => {
+            this.presentToast('Şikayetiniz işleme alındı.');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 
   async presentToast(mesaj) {
     const toast = await this.toastController.create({
