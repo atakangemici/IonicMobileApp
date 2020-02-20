@@ -15,9 +15,9 @@ export class TabsPage {
   constructor(private route:Router,public actionSheetController: ActionSheetController,private alertController: AlertController,public modalController: ModalController) {}
   user = localStorage.getItem('user');
   
-  goLogin(){
-    this.route.navigateByUrl("/login");
-  }
+  // goLogin(){
+  //   this.route.navigateByUrl("/login");
+  // }
 
   async presentAlertPrompt() {
     const alert = await this.alertController.create({
@@ -84,12 +84,12 @@ export class TabsPage {
    } 
 
    goToProfile(){
-    var user = JSON.parse(localStorage.getItem('user'));
-    if(user == null){
-      this.route.navigateByUrl("/login");
-    }
-    else{
+    // var user = JSON.parse(localStorage.getItem('user'));
+    // if(user == null){
+    //   this.route.navigateByUrl("/login");
+    // }
+    // else{
       this.route.navigateByUrl("/tabs/tab3");
-    }
+    // }
    } 
 }

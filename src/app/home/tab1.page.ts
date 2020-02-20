@@ -1,10 +1,10 @@
-import { Component , OnInit} from '@angular/core';
+import { Component , OnInit , ViewChild} from '@angular/core';
 import {Router , ActivatedRoute} from '@angular/router';
 import { ActionSheetController } from '@ionic/angular';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
-
+import { IonInfiniteScroll } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -16,6 +16,7 @@ export class Tab1Page {
   productFavorite : boolean;
   user : object;
   iller : object;
+  @ViewChild('scroll-infinite', { static : false }) infiniteScroll : IonInfiniteScroll;
 
   constructor(public toastController: ToastController,public alertController: AlertController,private route:Router,public http: HttpClient) {     
 
@@ -25,6 +26,21 @@ export class Tab1Page {
     .subscribe (data => {  
     this.products.push(data);  
     })    
+  }
+
+  loadData(event) {
+    setTimeout(() => {
+      console.log('Done');
+      event.target.complete();
+   
+      if (Object.keys(this.products).length == 1000) {
+        event.target.disabled = true;
+      }
+    }, 500);
+  }
+
+  toggleInfiniteScroll() {
+    this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
 
   async presentToast(mesaj) {
