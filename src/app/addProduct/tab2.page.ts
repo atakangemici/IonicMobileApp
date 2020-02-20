@@ -17,62 +17,19 @@ export class Tab2Page {
   constructor(public actionSheetController: ActionSheetController, private file: File,public http: HttpClient,private route:Router,private camera: Camera) {
 
    }
-
-   takePhoto(sourceType:number) {
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-    
-    this.camera.getPicture(options).then((imageData) => {
-    this.currentImage = 'data:image/jpeg;base64,' + imageData;
-
-    }, (err) => {
    
+   accessGallery(){
+    this.camera.getPicture({
+      sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
+      destinationType: this.camera.DestinationType.DATA_URL
+    }).then((imageData) => {
+      this.currentImage = 'data:image/jpeg;base64,'+imageData;
+      }, (err) => {
+      console.log(err);
     });
   }
 
-  getGalleryImage(sourceType) {
-    const options: CameraOptions = {
-      quality: 100,
-      sourceType: sourceType,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-    this.camera.getPicture(options).then((imageData) => {
-      this.currentImage = 'data:image/jpeg;base64,' + imageData;
-    }, (err) => {
-    
-    });
-  }
-
-  async selectImage() {
-    const actionSheet = await this.actionSheetController.create({
-      header: "Fotoğraf Yükle",
-      buttons: [{
-        text: 'Galeriden Seç',
-        handler: () => {
-          this.getGalleryImage(this.camera.PictureSourceType.PHOTOLIBRARY);
-        }
-      },
-      {
-        text: 'Kamera Kullan',
-        handler: () => {
-          this.getGalleryImage(this.camera.PictureSourceType.CAMERA);
-        }
-      },
-      {
-        text: 'Vazgeç',
-        role: 'cancel'
-      }
-      ]
-    });
-    await actionSheet.present();
-  }
-
+ 
   save(product){
     var token = JSON.parse(localStorage.getItem('token'));
     let headers = new HttpHeaders();
