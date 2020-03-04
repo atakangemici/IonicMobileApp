@@ -23,7 +23,7 @@ export class productDetail {
   constructor(public toastController: ToastController,route: ActivatedRoute,private router:Router,public http: HttpClient,private alertController: AlertController) { 
     this.productID = route.snapshot.params['id']; 
   
-          this.http.get( 'http://indirimxmobile.azurewebsites.net/api/app/get_product/' + parseInt(this.productID) ).toPromise()
+          this.http.get( 'https://localhost:44353/api/app/get_product/' + parseInt(this.productID) ).toPromise()
             .then(data =>{         
               this.product = data;
            })   
@@ -71,7 +71,7 @@ export class productDetail {
     var token = JSON.parse(localStorage.getItem('token'));
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', 'Bearer '+ token);  
-    this.http.get( 'http://indirimxmobile.azurewebsites.net/api/app/get_comments/' + parseInt(this.productID) ,{headers: headers}).toPromise()
+    this.http.get( 'https://localhost:44353/api/app/get_comments/' + parseInt(this.productID) ,{headers: headers}).toPromise()
     .then(data =>{           
       this.comments = data;
       this.commentCount = Object.keys(data).length;
@@ -83,7 +83,7 @@ export class productDetail {
     var token = JSON.parse(localStorage.getItem('token'));
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', 'Bearer '+ token);  
-    this.http.get( 'http://indirimxmobile.azurewebsites.net/api/app/get_all_comments/' + parseInt(this.productID) ,{headers: headers}).toPromise()
+    this.http.get( 'https://localhost:44353/api/app/get_all_comments/' + parseInt(this.productID) ,{headers: headers}).toPromise()
     .then(data =>{           
       this.comments = data;
       this.commentCount = Object.keys(data).length;
@@ -133,7 +133,7 @@ export class productDetail {
           handler: () => {
             let headers = new HttpHeaders();
             headers = headers.set('Authorization', 'Bearer '+ token); 
-            this.http.get( 'http://indirimxmobile.azurewebsites.net/api/app/delete_comment/' + id ,{headers: headers}).toPromise()
+            this.http.get( 'https://localhost:44353/api/app/delete_comment/' + id ,{headers: headers}).toPromise()
             .then(data =>{         
               this.getComments();
               this.presentToast('Yorumun silindi.');
@@ -182,7 +182,7 @@ export class productDetail {
           }
           let headers = new HttpHeaders();
           headers = headers.set('Authorization', 'Bearer '+ token);  
-          this.http.post<any>('http://indirimxmobile.azurewebsites.net/api/app/add_comments', obj,{headers: headers}).subscribe(data => {
+          this.http.post<any>('https://localhost:44353/api/app/add_comments', obj,{headers: headers}).subscribe(data => {
             this.getComments(); 
             this.presentToast('Yorumun paylaşıldı.');
           })

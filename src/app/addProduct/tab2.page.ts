@@ -14,6 +14,7 @@ import { ActionSheetController } from '@ionic/angular';
 })
 export class Tab2Page {
   currentImage: any;
+  image : any;
   constructor(public actionSheetController: ActionSheetController, private file: File,public http: HttpClient,private route:Router,private camera: Camera) {
 
    }
@@ -24,6 +25,7 @@ export class Tab2Page {
       destinationType: this.camera.DestinationType.DATA_URL
     }).then((imageData) => {
       this.currentImage = 'data:image/jpeg;base64,'+imageData;
+      this.image = imageData;
       }, (err) => {
       console.log(err);
     });
@@ -34,7 +36,9 @@ export class Tab2Page {
     var token = JSON.parse(localStorage.getItem('token'));
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', 'Bearer '+ token);  
-    this.http.post<any>('http://indirimxmobile.azurewebsites.net/api/app/add_product', product.form.value,{headers: headers}).subscribe(data => {
+    product.form.value.image = "";
+
+    this.http.post<any>('https://localhost:44353/api/app/add_product', product.form.value,{headers: headers}).subscribe(data => {
       this.route.navigateByUrl("/tabs/tab1");
     })
   }

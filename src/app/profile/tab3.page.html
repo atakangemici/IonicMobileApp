@@ -36,20 +36,17 @@
     
     <ion-segment value="gonderi" style="padding-top:20px" color="medium">
       <ion-segment-button value="gonderi" (click)="segmentChange('gonderi');">
-        <ion-label>Gönderilerim (3)</ion-label>
+        <ion-label>Gönderilerim ({{productCount}})</ion-label>
       </ion-segment-button>
       <ion-segment-button value="favori"  (click)="segmentChange('favori');">
-        <ion-label>Favorilerim (0)</ion-label>
-      </ion-segment-button>
-      <!-- <ion-segment-button value="bildirim" (click)="segmentChange('bildirim');">
-        <ion-label>Bildirimler</ion-label>
-      </ion-segment-button> -->
+        <ion-label>Favorilerim ({{favoritesCount}})</ion-label>
+      </ion-segment-button>    
     </ion-segment>
 
     <ion-list *ngIf = "segmentValue == 'gonderi'"> 
-      <ion-item *ngFor="let product of products[0]" (click)="goToProduct(product);">
+      <ion-item *ngFor="let product of products" (click)="goToProduct(product);">
         <ion-avatar slot="start">
-          <ion-img [src]="product.image.image"></ion-img>        
+          <ion-img [src]="product?.images[0].image"></ion-img>        
         </ion-avatar>
         <ion-label>
           <h3>{{product.name}}</h3>
@@ -58,6 +55,21 @@
         </ion-label>
       </ion-item>
     </ion-list>
+
+    <ion-list *ngIf = "segmentValue == 'favori'"> 
+      <ion-item *ngFor="let favorite of favorites" (click)="goToProduct(product);">
+        <ion-avatar slot="start">
+          <ion-img [src]="favorite?.product.images[0].image"></ion-img>        
+        </ion-avatar>
+        <ion-label>
+          <h3>{{favorite.product.name}}</h3>
+          <p>{{favorite.product.price}} ₺</p>
+          <p style="color:#3171e0"><ion-icon name="pin" style="color:lightgray;padding-right: 5px;"></ion-icon>{{favorite.product.location}} / {{product?.store}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+
 
     
   </ion-content>

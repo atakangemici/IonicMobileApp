@@ -37,7 +37,7 @@
         </ion-grid>
            
       </ion-card-header>
-      <ion-img [src]="product?.image.image" style="height: 250px;"></ion-img>  
+      <ion-img [src]="product?.images[0].image" style="height: 250px;"></ion-img>  
       <ion-card-header padding style="position: relative;left: 26px;">
         <ion-label>
           <h3>{{product?.name}}</h3>
@@ -100,7 +100,7 @@
             </ion-col>
               <ion-col style="text-align: right;">
                 <div> 
-                  <ion-icon name="trash" (click) = "presentAlertConfirm(comment.id);" *ngIf="comment.user_id == user.id" style="padding-top:18px;color:gray;font-size: 18px;"></ion-icon>
+                  <ion-icon name="trash" (click) = "presentAlertConfirm(comment.id);" *ngIf="comment.user_id == 1" style="padding-top:18px;color:gray;font-size: 18px;"></ion-icon>
                 </div>
               </ion-col>
             </ion-row>

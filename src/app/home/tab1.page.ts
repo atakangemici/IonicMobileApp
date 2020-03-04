@@ -12,8 +12,9 @@ import { IonInfiniteScroll } from '@ionic/angular';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  products = [];
+  public products : object;
   productFavorite : boolean;
+  public favoriteCount : number;
   user : object;
   iller : object;
   @ViewChild('scroll-infinite', { static : false }) infiniteScroll : IonInfiniteScroll;
@@ -22,9 +23,9 @@ export class Tab1Page {
 
     this.user = JSON.parse(localStorage.getItem('user'));
    
-    this.http.get ( 'http://indirimxmobile.azurewebsites.net/api/app/get_all_products')
+    this.http.get ( 'https://localhost:44353/api/app/get_all_products')
     .subscribe (data => {  
-    this.products.push(data);  
+    this.products = data;  
     })    
   }
 
